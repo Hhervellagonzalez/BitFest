@@ -2,15 +2,12 @@ package com.softtek.BitFest.modelo;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
-import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -18,23 +15,25 @@ import java.util.List;
 public class Evento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int eventoId;
+    private int idEvento;
     @Column(length = 60, nullable = false)
     private String titulo;
     @Column(length = 100, nullable = false)
     private String descripcionCorta;
     @Column(length = 500, nullable = false)
     private String descripcionLarga;
-    @Column(length = 60, nullable = false)
-    private Date fechaInicio;
-    @Column(length = 60, nullable = false)
+    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fechaRealizacion;
+    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaActualizacion;
-    @Column(length = 60, nullable = false)
-    private String estado;
     @Column(length = 100, nullable = false)
+    private String categotia;
+    @Column(length = 500, nullable = false)
     private String imagen;
 
     @ManyToOne
-    @JoinColumn(name = "organizadorId")
+    @JoinColumn(name = "idOrganizador")
     private Organizador organizador;
 }

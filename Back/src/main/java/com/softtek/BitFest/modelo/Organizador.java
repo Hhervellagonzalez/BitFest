@@ -3,12 +3,10 @@ package com.softtek.BitFest.modelo;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -16,10 +14,10 @@ import lombok.Setter;
 public class Organizador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int organizadorId;
+    private int idOrganizador;
     @Column (length = 60, nullable = false)
     private String nombre;
-    @Column (length = 100, nullable = false)
+    @Column (length = 500, nullable = false)
     private String logotipo;
     @Column (length = 100, nullable = false)
     private String descripcionCorta;

@@ -1,15 +1,13 @@
 package com.softtek.BitFest.modelo;
 
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -17,17 +15,18 @@ import java.util.Date;
 public class Comentario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int comentarioId;
+    private int idComentario;
     @Column (length = 500, nullable = false)
     private String texto;
-    @Column (length = 60, nullable = false)
+    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
 
     @ManyToOne
-    @JoinColumn(name = "eventoId")
-    private Evento idevento;
+    @JoinColumn(name = "idEvento")
+    private Evento idEvento;
 
     @ManyToOne
-    @JoinColumn(name = "usuarioId")
-    private Usuario usuario;
+    @JoinColumn(name = "idUsuario")
+    private Usuario idUsuario;
 }
